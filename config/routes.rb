@@ -4,10 +4,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  #get "/product" => "product", action: "new_product"
-  #get "/product_1" => "product", action: "product_1"
+  get "/products" => "product#index"
+  get "/products/:id" => "product#show"
+  post "/products" => "product#create"
+  patch "/products/:id" => "product#update"
   #get "/product_2" => "product", action: "product_2"
   #get "/product_3" => "product", action: "product_3"
   
-  get "/products" => "product#index"
+  #get singularproduct:id
+
+  #(id:params['id'])
 end
