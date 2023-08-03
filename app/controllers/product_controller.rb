@@ -7,16 +7,19 @@ class ProductController < ApplicationController
   end
 
   def show
-    p params[id:]
-    @product = product.find_by(id: params[:id])
+    
+    @product = Product.find_by(id: params[:id])
+    
+    @product = @product || Product.first
     render template: "products/show"
   end
 
   def create
-    @product = Product.new(name: params[:input_name],
-       price: params[:input_price],
-        image_url: params[:input_image_url], 
-        description: params[:input_description])
+
+    @product = Product.new(name: params[:name],
+       price: params[:price],
+        image_url: params[:image_url], 
+        description: params[:description])
 
       @product.save
       render template: "products/show"
@@ -25,13 +28,20 @@ class ProductController < ApplicationController
 
     def update
       @product = Product.find_by(id: params[:id])
-      @product.name = params[:input_name]
-      @product.price = params[:input_price]
-      @product.image_url = params[:input_image_url]
-      @product.description = params[:input_description]
+      @product.name = params[:name] 
+      @product.price = params[:price]
+      @product.image_url = params[:image_url]
+      @product.description = params[:description]
       @product.save
       
       render template: "products/show"
+    end
+
+    def destroy
+      @product = Product.find_by(id: params[:id])
+      #find the product
+      #remove the product
+      render json: {message: "product removed"}
     end
 
 

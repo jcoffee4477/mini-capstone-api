@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/products/:id" => "product#show"
   post "/products" => "product#create"
   patch "/products/:id" => "product#update"
+  delete "/products/:id" => "product#destroy"
   #get "/product_2" => "product", action: "product_2"
   #get "/product_3" => "product", action: "product_3"
   
