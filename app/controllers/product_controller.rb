@@ -10,19 +10,21 @@ class ProductController < ApplicationController
     
     @product = Product.find_by(id: params[:id])
     
-    @product = @product || Product.first
-    render template: "products/show"
+    render :show
   end
 
   def create
-
+    
     @product = Product.new(name: params[:name],
        price: params[:price],
         image_url: params[:image_url], 
         description: params[:description])
-
-      @product.save
+    
+     if @product.save
       render template: "products/show"
+     else
+      render json: {errors: @product.errors.full_message}
+     end
     end
 
 
