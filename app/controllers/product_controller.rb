@@ -34,36 +34,25 @@ class ProductController < ApplicationController
       @product.price = params[:price]
       @product.image_url = params[:image_url]
       @product.description = params[:description]
-      @product.save
       
+      if @product.save
       render template: "products/show"
+      else
+        render json: {errors: @product.errors.full_message}
+      end
     end
 
     def destroy
       @product = Product.find_by(id: params[:id])
-      #find the product
-      #remove the product
+      @game.destroy
       render json: {message: "product removed"}
     end
 
 
   
 
-  #name: params[:input_name]
-    
+  #allow multiple images
+  #different image ids for each product
 
-  #def product_2
-   #render json: product = Product.find_by(name: "iphone")
-  #end
-
-  #def product_3
-    #render json: product = Product.find_by(name: "television")
-  #end
-
-  #def index
-    #@product = Product.all
-    #render template: "contacts/show"
-  #end
-    
  
 end
